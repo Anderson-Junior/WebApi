@@ -7,5 +7,6 @@ namespace WebApi.Repositories.Users
     {
         Task<User> GetUserByIdAsync(int id);
         Task<User> PostUserAsync(User user);
+        Task<User> GetUserAsync(string userName, string password);
     }
 }

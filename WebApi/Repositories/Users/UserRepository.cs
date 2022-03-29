@@ -26,5 +26,11 @@ namespace WebApi.Repositories.Users
             await _context.SaveChangesAsync();
             return user;
         }
+
+        public async Task<User> GetUserAsync(string userName, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == userName && x.Password == password);
+            return user;
+        }
     }
 }

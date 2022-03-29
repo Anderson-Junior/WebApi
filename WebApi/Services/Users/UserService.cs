@@ -11,6 +11,13 @@ namespace WebApi.Services.Users
         {
             _userRepository = userRepository;
         }
+
+        public async Task<User> GetUserAsync(string userName, string password)
+        {
+            var user = await _userRepository.GetUserAsync(userName, password);
+            return user;
+        }
+
         public async Task<User> GetUserByIdAsync(int id)
         {
             return await _userRepository.GetUserByIdAsync(id);
@@ -18,7 +25,8 @@ namespace WebApi.Services.Users
 
         public async Task<User> PostUserAsync(User user)
         {
-            return await _userRepository.PostUserAsync(user);
+            var usuario = await _userRepository.PostUserAsync(user);
+            return usuario;
         }
     }
 }

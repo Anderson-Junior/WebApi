@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 using WebApi.Models;
 using WebApi.Models.InputModels;
+using WebApi.Services.Auth;
 using WebApi.Services.Users;
 
 namespace WebApi.Controllers
@@ -15,6 +17,7 @@ namespace WebApi.Controllers
     {
         private readonly IUserService _service;
         private readonly IMapper _mapper;
+
         public UserController(IUserService service, IMapper mapper)
         {
             _service = service;
@@ -23,6 +26,7 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("{id}", Name = "GetUserById")]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> GetUserById(int id)
         {
             if (!ModelState.IsValid)
